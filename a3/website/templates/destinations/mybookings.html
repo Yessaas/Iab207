@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+
+{% import "bootstrap/form.html" as wtf %}
+{% block content %}
+    <ul class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li>Booked Tickets</li>
+    </ul>
+
+<div class="card-group row justify-content-center">
+    <h1 class="text-center">View Your Tickets</h1>
+    {% for ticket in tickets %}
+    {% for concert in concert %}
+    {% if ticket.event_id == concert.event_id %}
+    <div class="col-md-6 col-lg-3">
+        <div class="card mb-4 bg-dark text-white">
+            <img class="card-img" src="{{ concert.event_image }}" alt="concert image for {{ concert.event_name }}">
+            <div class="flex-column">
+                <h1 class="text-center">Concert: {{ concert.event_name }}</h1>
+                <h4 class="text-center">No. Tickets: {{ ticket.quantity }}</h4>
+                <h4 class="text-center">Total ${{ ticket.total_price }}</h4>
+                <h5 class="text-center">Event Status: {{ concert.event_status }}</h5>
+                <a href="{{url_for('concert.show', id=concert.event_id)}}" class="stretched-link"></a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+</div>
+{% endblock %}

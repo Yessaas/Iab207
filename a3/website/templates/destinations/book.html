@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% import "bootstrap/form.html" as wtf %}
+
+{% block content %}
+  <ul class="breadcrumb">
+      <li><a href="/">Home</a></li>
+      <li>Book Tickets</li>
+  </ul>
+
+      <div class="mx-auto" style="width: 60%;">
+            <img class="align-self-start mr-3 cards" src="{{ book.event_image }}" style="width: 100%;"
+              alt="concert image for {{ book.event_name }}">
+            <div style="padding-left: 15%;">
+              <br>
+              <h5>Event: {{ book.event_name }}</h5>
+              <p class="black">Description: {{ book.event_description }}</p>
+              <p class="black">Location: {{ book.event_location }}</p>
+              <p class="black">Ticket cost: ${{book.event_ticket_cost}}</p>
+              <p class="black">On: {{ book.event_date.strftime("%a %d %b %Y") }}, {{ book.event_time.strftime("%#I:%M %p") }}</p>
+              <div style="padding-right: 50%;"> 
+                {{wtf.render_form(form)}}
+              </div> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+{% endblock %}

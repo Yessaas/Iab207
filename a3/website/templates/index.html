@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+
+<ul class="breadcrumb">
+   <li>Home ></li>
+</ul>
+<div class="jumbotron"
+   style="background-image: url(static/img/pexels-vishnu-r-nair-1105666.jpg);background-size: auto 100%;">
+   <div class="text-white text-center py-5 px-4">
+      <div>
+         <br>
+         <h1 class="display-2">Concerts In Australia</h1>
+         <br><br>
+      </div>
+   </div>
+</div>
+
+
+
+<div class="container-xl-">
+   <div class="row">
+      {% for destinations in destinations %}
+      <div class="col-6 col-md-4 concert">
+         <a class="activity" href="{{url_for('concert.show', id=destinations.event_id)}}">
+            <h1>{{ destinations.event_name }}</h1>
+            <p>Date: {{ destinations.event_date }}</p>
+            <p>Genre: {{ destinations.event_genres }}</p>
+            <p>Status: {{ destinations.event_status }}</p>
+         </a>
+      </div>
+      <div class="col-12 col-md-8 concert">
+         <a class="activity" href="{{url_for('concert.show', id=destinations.event_id)}}">
+            <img class="image" src="{{ destinations.event_image }}" alt="{{ destinations.event_name }}">
+         </a>
+      </div>
+      {% endfor %}
+   </div>
+</div>
+<div class="card-footer"><a href="{{url_for('concert.show', id=destinations.event_id)}}" class="btn btn-danger">
+      View Details </a></div>
+</div>
+{% endblock %}

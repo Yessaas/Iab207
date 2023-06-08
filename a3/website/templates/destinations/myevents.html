@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+
+{% import "bootstrap/form.html" as wtf %}
+{% block content %}
+<ul class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li>My Events</li>
+</ul>
+
+    <div class="row d-flex justify-content-center">
+        <h1 class="headFont text-center whiteborder mt-4 ">Edit Your Music Events</h1>
+        {% for event in event %}
+        {% if event.user_id == current_user.id %}
+        <div class="col-md-6 col-lg-3">
+            <div class="card mb-4 bg-dark text-white">
+                <img src="{{ event.event_image }}" alt="event image">
+                <div class="d-flex flex-column">
+                    <h5 class="text-center">{{ event.event_name }}</h5>
+                    <h5 class="text-center">Event Status: {{ event.event_status }}</h5>
+                    <a href="{{url_for('concert.edit', id=event.event_id)}}" class="stretched-link"></a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

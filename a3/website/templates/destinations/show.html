@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% import "bootstrap/form.html" as wtf %}
+
+{% block content %}
+<ul class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li>{{concerts.event_name}} details</li>
+</ul>
+    <div class="container-xl-">
+        <div class="row">
+            <div class="col-6 col-md-4 concert" style="height: auto;padding: 50px 0px;">
+                <div class="activity">
+                    <h1>{{concerts.event_name}}</h1> <br>
+                    <p>{{concerts.event_date}}</p><br>
+                    <p>{{concerts.event_genres}}</p><br>
+                    <p>{{concerts.event_status}}</p><br>
+                    <p>{{concerts.event_time}}</p><br>
+                    <p>{{concerts.event_ticket_cost}}</p><br>
+                    <p>{{concerts.event_total_tickets}}</p><br>
+                    <p>{{concerts.event_location}}</p><br>
+                    <p>{{concerts.event_artists}}</p><br>
+                </div>
+            </div>
+            <div class="col-12 col-md-8 concert" style="height: auto;padding: 100px 0px">
+                <a class="activity" href="{{url_for('concert.book', id=concerts.event_id)}}">
+                    <img class="image" src="{{ url_for('static', filename='img/riverside.png')}}" style="height: auto;"
+                        alt="fatboy slim">
+                </a>
+            </div>
+            <form action="purchase_tickets.html">
+                <button id="ticket_button" type="submit" name='purchase_tickets'>PURCHASE TICKETS</button>
+            </form>
+            {% endblock %}
